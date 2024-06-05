@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sales_firebase_flutter/delibery/screens/create_repartidor.dart';
+import 'package:sales_firebase_flutter/delibery/screens/home_admin.dart';
+import 'package:sales_firebase_flutter/delibery/screens/menu_admin.dart';
 import 'package:sales_firebase_flutter/screens/create_sale_screen.dart';
 import 'package:sales_firebase_flutter/firebase_options.dart';
 import 'package:sales_firebase_flutter/screens/create_user_screen.dart';
@@ -9,13 +12,20 @@ import 'package:sales_firebase_flutter/screens/sales_list_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   // This widget is the root of your application.
+  var menusDelibery = {
+    '/homeAdmin': (_) => HomeAdminScreen(),
+    '/menuAdmin': (_) => MenuAdminScreen(),
+    '/createRepartidor': (_) => CreateRepartidorScreen(),
+  };
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,13 +34,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/login',
-      routes: {
-        '/': (_) => SalesListScreen(),
-        '/create': (_) => CreateSaleScreen(),
-        '/signup': (_) => CreateUserScreen(),
-        '/login': (_) => LoginScreen(),
-      },
+      initialRoute: '/homeAdmin',
+      routes: menusDelibery,
     );
   }
   
