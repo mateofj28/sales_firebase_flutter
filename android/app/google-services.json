@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1093171481252",
+    "project_id": "sales-46659",
+    "storage_bucket": "sales-46659.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093171481252:android:7938bc5e1adf0111287431",
+        "android_client_info": {
+          "package_name": "com.example.sales_firebase_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtlei0I12wgi18kcFpShXtQFJQQBAnMlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
