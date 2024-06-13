@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
+import 'package:sales_firebase_flutter/services/auth_services.dart';
 
-class MenuAdminScreen extends StatelessWidget {
-  MenuAdminScreen({super.key});
+class MenuClientScreen extends StatelessWidget {
+  MenuClientScreen({super.key});
 
 
   List<Map> menus = [
@@ -11,18 +14,16 @@ class MenuAdminScreen extends StatelessWidget {
       "icon":Icons.person,
     },
     {
-      "title":"Crear Repartidor",
-      "icon":Icons.person_add_rounded,
-    },
-    {
-      "title":"Crear Pizza",
-      "icon": Icons.local_pizza_rounded,
+      "title":"Mis pedidos",
+      "icon":Icons.format_list_numbered_sharp,
     },
     {
       "title":"Cerrar Sesión",
       "icon":Icons.logout,
     }
   ];
+
+  AuthServices _auth = AuthServices();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class MenuAdminScreen extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 40,
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.purple,
                 child: Icon(Icons.person_3_rounded, size: 40, color: Colors.white),
               ),
             ),
@@ -45,7 +46,7 @@ class MenuAdminScreen extends StatelessWidget {
             SizedBox(height: 20),
 
             Text(
-              "Hola Jaime", 
+              'Hola ${ _auth.currentUser!['nombre'] }', 
               style: TextStyle(
                 fontWeight: FontWeight.bold, 
                 fontSize: 20
@@ -65,19 +66,13 @@ class MenuAdminScreen extends StatelessWidget {
 
                       var menuSeleted = menus[i]["title"];
 
-                      if (menuSeleted == "Crear Repartidor") {
-                        Navigator.pushNamed(context, '/createRepartidor');
-                      }
-
-                      if (menuSeleted == "Crear Pizza") {
-                        Navigator.pushNamed(context, '/createPizza');
+                      if (menuSeleted == "Información Personal") {
+                        Navigator.pushNamed(context, '/updateClient');
                       }
 
                       if ( menuSeleted == "Cerrar Sesión"){
                         Navigator.pushNamed(context, "/login");
                       }
-
-
 
                     },
                     child: ListTile(

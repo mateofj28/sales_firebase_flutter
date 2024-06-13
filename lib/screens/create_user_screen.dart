@@ -73,7 +73,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
           context: context, 
           builder: (context) => AlertDialog(
             title: const Text('Info'),
-            content: Text('User created successfully!'),
+            content: Text('Nuevo cliente agregado'),
             actions: [
               TextButton(
                 onPressed: () {

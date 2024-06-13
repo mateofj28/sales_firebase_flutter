@@ -43,9 +43,16 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
 
       try{
-        await _auth.login(email, password);
+        final value = await _auth.login(email, password);
+        await _auth.getUserInfo(value.uid);
         clearData();
-        Navigator.pushNamed(context, "/");
+
+        if (email == "admin@hotmail.com" && password == "admin1234"){
+          Navigator.pushNamed(context, "/homeAdmin");
+        } else {
+          Navigator.pushNamed(context, "/homeClient");
+        }
+
       } catch (err){
         showDialog(
           // ignore: use_build_context_synchronously
@@ -162,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   GestureDetector(
                     onTap: (){
-                      Navigator.pushNamed(context, "/signup");  
+                      Navigator.pushNamed(context, "/createClient");  
                     },
                     child: Text(
                       "Sign Up", 

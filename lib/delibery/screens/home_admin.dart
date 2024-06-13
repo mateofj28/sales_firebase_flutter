@@ -256,14 +256,30 @@ class HomeAdminScreen extends StatelessWidget {
                       );
                     }
 
-                    var users = snapshot.data?.docs.where((doc) => doc['tipoUsuario'] == 'repartidor').toList();
+                     for (var doc in snapshot.data!.docs) {
+                        print(doc.id);
+                      }
+
+                    var users = snapshot.data?.docs;
 
                     print(users);
+
+                    if (users!.length == 0){
+                      return Container(
+                        child: const Column(
+                          children: [
+                            Icon(Icons.person),
+                            Text("No hay repartidores")
+                          ],
+                        ),
+                      ); 
+                    }
+
 
 
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: users?.length,
+                      itemCount: users.length,
                       itemBuilder: (context, i){
                         return Container(
                           width: 100,
@@ -282,7 +298,7 @@ class HomeAdminScreen extends StatelessWidget {
                                 child: Icon(Icons.person, color: Colors.black,),
                               ),
 
-                              Text("Sebastian", style: TextStyle(fontWeight: FontWeight.bold),)
+                              Text(users[i]['nombre'], style: TextStyle(fontWeight: FontWeight.bold),)
                             ],
                           ),
                         );

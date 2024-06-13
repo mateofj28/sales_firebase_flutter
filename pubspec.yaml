@@ -40,6 +40,9 @@ dependencies:
   cloud_firestore: ^4.17.4
   firebase_auth:
   font_awesome_flutter:  # Verifica siempre la última versión
+  provider:
+  shared_preferences:
+  json_annotation:
 
 
 dev_dependencies:

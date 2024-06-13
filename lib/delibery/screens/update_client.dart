@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
 
-class CreateRepartidorScreen extends StatelessWidget {
-  const CreateRepartidorScreen({super.key});
+class UpdateClientScreen extends StatelessWidget {
+  const UpdateClientScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Crear repartidor"),
-        centerTitle: true,
-      ),
-      body: Column(
+      body: SafeArea(
+          child: Column(
         children: [
-
           SizedBox(height: 40),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
@@ -33,9 +28,7 @@ class CreateRepartidorScreen extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(height: 20),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
@@ -43,7 +36,7 @@ class CreateRepartidorScreen extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
-                hintText: 'Placa',
+                hintText: 'Apellido',
                 prefixIcon: const Icon(Icons.featured_play_list_rounded),
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -52,13 +45,12 @@ class CreateRepartidorScreen extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(height: 20),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
               controller: context.watch<UserServices>().telefono,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
@@ -71,9 +63,7 @@ class CreateRepartidorScreen extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(height: 40),
-
           ElevatedButton(
             onPressed: () {
               // Acción del botón
@@ -91,17 +81,15 @@ class CreateRepartidorScreen extends StatelessWidget {
               ),
             ),
             child: Text(
-              'Crear repartidor',
+              'Agregar atributos',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.white,
               ),
             ),
           ),
-
-
         ],
-      )
+      )),
     );
   }
 }
