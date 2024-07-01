@@ -1,11 +1,9 @@
 
 
 
-
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class AuthServices {
@@ -26,6 +24,8 @@ class AuthServices {
       "nombre":"",
       "apellido":"",
       "telefono":"",
+      "direccion": "",
+      "direcciones": [],
       "tipoUsuario":"cliente",
     });
   }
@@ -40,7 +40,8 @@ class AuthServices {
     
     if (documentSnapshot.exists){
       _currentUser = documentSnapshot.data() as Map<String, dynamic>;
-      
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('userId', userId);
     } else {
       _currentUser = null;
     }

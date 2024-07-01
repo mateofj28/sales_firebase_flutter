@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sales_firebase_flutter/delibery/services/pizza_services.dart';
 import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
 import 'package:sales_firebase_flutter/services/auth_services.dart';
 
@@ -46,7 +46,7 @@ class MenuClientScreen extends StatelessWidget {
             SizedBox(height: 20),
 
             Text(
-              'Hola ${ _auth.currentUser!['nombre'] }', 
+              'Hola ${ context.read<UserServices>().getNameClient() }', 
               style: TextStyle(
                 fontWeight: FontWeight.bold, 
                 fontSize: 20
@@ -67,7 +67,13 @@ class MenuClientScreen extends StatelessWidget {
                       var menuSeleted = menus[i]["title"];
 
                       if (menuSeleted == "Información Personal") {
+                        context.read<UserServices>().defineData();
                         Navigator.pushNamed(context, '/updateClient');
+                      }
+
+                      if ( menuSeleted == "Mis pedidos"){
+                        context.read<PizzaServices>().getVentaClient(context.read<UserServices>().userInfo['nombre']);
+                        Navigator.pushNamed(context, "/myOrders");
                       }
 
                       if ( menuSeleted == "Cerrar Sesión"){

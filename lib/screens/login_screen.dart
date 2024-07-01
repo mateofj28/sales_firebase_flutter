@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
 import 'package:sales_firebase_flutter/services/auth_services.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -44,12 +46,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
       try{
         final value = await _auth.login(email, password);
+        // ignore: use_build_context_synchronously
+        context.read<UserServices>().getUser(value.uid);
         await _auth.getUserInfo(value.uid);
+
         clearData();
 
-        if (email == "admin@hotmail.com" && password == "admin1234"){
+        if (email == "mfj@gmail.com" && password == "mfj123"){
+          // ignore: use_build_context_synchronously
           Navigator.pushNamed(context, "/homeAdmin");
         } else {
+          // ignore: use_build_context_synchronously
           Navigator.pushNamed(context, "/homeClient");
         }
 
@@ -98,7 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    
                     filled: true,
                     fillColor: Colors.grey[200],
                     hintText: 'Correo',

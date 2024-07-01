@@ -101,6 +101,7 @@ class CreatePizzaScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: TextField(
                 controller: context.watch<PizzaServices>().precio,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.grey[200],

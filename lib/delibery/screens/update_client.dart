@@ -8,6 +8,10 @@ class UpdateClientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Informacion personal"),
+        centerTitle: true,
+      ),
       body: SafeArea(
           child: Column(
         children: [
@@ -15,7 +19,7 @@ class UpdateClientScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
-              controller: context.watch<UserServices>().name,
+              controller: context.watch<UserServices>().nameClient,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
@@ -32,7 +36,7 @@ class UpdateClientScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
-              controller: context.watch<UserServices>().placa,
+              controller: context.watch<UserServices>().lastClient,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
@@ -49,7 +53,7 @@ class UpdateClientScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
-              controller: context.watch<UserServices>().telefono,
+              controller: context.watch<UserServices>().phoneClient,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 filled: true,
@@ -67,7 +71,7 @@ class UpdateClientScreen extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               // Acción del botón
-              context.read<UserServices>().createUser(context);
+              context.read<UserServices>().updateClient(context);
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),

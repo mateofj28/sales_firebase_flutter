@@ -36,7 +36,7 @@ class VentaConfirmadaScreen extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            Text("Order id: jdiwdjidjwidjwidjwidj"),
+            Text("Order id: ${context.watch<PizzaServices>().salesId}"),
 
             Text("Entregado: Aprox en 30 min..."),
 

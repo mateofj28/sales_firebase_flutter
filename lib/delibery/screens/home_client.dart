@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import 'package:sales_firebase_flutter/delibery/services/pizza_services.dart';
+import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
 
 class HomeClientScreen extends StatelessWidget {
   const HomeClientScreen({super.key});
@@ -17,9 +19,13 @@ class HomeClientScreen extends StatelessWidget {
           icon: const Icon(Icons.menu)
         ),
         title: InkWell(
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Barrio acacias"),
+            child: Text(
+              context.watch<UserServices>().getAddressClient(),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           onTap: (){
             Navigator.pushNamed(context, '/createAddress');
@@ -62,7 +68,7 @@ class HomeClientScreen extends StatelessWidget {
           children: [
             Container(
                 width: double.infinity,
-                height: 700,
+                height: 750,
                 child: StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance.collection("pizzas").snapshots(),
                   builder: (context, snapshot){
@@ -104,8 +110,16 @@ class HomeClientScreen extends StatelessWidget {
                                     Row( 
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [ 
-                                        Text(pizzas?[i]['nombre'], style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),  
-                                        Text("\$ ${pizzas![i]['precio'].toString()} "),
+                                        Text(pizzas?[i]['nombre'], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),  
+                                        Text(
+                                          pizzas![i]['precio'],
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.green
+                                          )
+                                        )
+                                        
                                       ],
                                     ),
 
@@ -113,25 +127,16 @@ class HomeClientScreen extends StatelessWidget {
 
                                     Row(
                                       children: [
-                                        Text(pizzas[i]['categoria'], style: const TextStyle(fontSize: 16)),
+                                        Text("Categoria: ${pizzas[i]['categoria']}", style: const TextStyle(fontSize: 16)),
                                       ],
                                     ),
 
                                     Row(
-                                      children: List.generate(pizzas[i]['ingredientes'].length, (index) {
-                                        if (index < 2){
-                                          return Container(
-                                            width: 130,
-                                            child: Text(
-                                              "${pizzas[i]['ingredientes'][index] }, ",
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold) 
-                                            ),
-                                          );
-                                        }
-                                        return Container();
-                                      }),
+                                      children: [
+                                        Text("Ingredientes: ${pizzas[i]['ingredientes'].length } ",
+                                          style: const TextStyle(fontSize: 16) 
+                                        ),
+                                      ],
                                     ),
 
                                     const SizedBox(height: 5),

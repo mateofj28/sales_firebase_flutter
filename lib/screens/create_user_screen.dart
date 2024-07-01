@@ -68,12 +68,13 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
       try{
         await _auth.createUser(email, password);
 
+        // ignore: use_build_context_synchronously
         showDialog(
           // ignore: use_build_context_synchronously
           context: context, 
           builder: (context) => AlertDialog(
             title: const Text('Info'),
-            content: Text('Nuevo cliente agregado'),
+            content: const Text('Nuevo cliente agregado'),
             actions: [
               TextButton(
                 onPressed: () {

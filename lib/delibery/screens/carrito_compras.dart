@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_firebase_flutter/delibery/services/pizza_services.dart';
+import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
 
 class CarritoComprasScreen extends StatelessWidget {
   const CarritoComprasScreen({super.key});
@@ -181,7 +182,7 @@ class CarritoComprasScreen extends StatelessWidget {
 
             Container(
               width: double.infinity,
-              height: 220,
+              height: 230,
               color: Colors.amber[100],
               margin: EdgeInsets.symmetric(horizontal: 15),
               child: Column(
@@ -197,9 +198,11 @@ class CarritoComprasScreen extends StatelessWidget {
                       ),
                       child: Icon(Icons.location_on, color: Colors.orange)
                     ),
-                    trailing: IconButton(icon: Icon(Icons.edit), onPressed: (){},),
+                    trailing: IconButton(icon: Icon(Icons.edit), onPressed: (){
+                      Navigator.pushNamed(context, "/createAddress");
+                    },),
                     title: Text("Casa"),
-                    subtitle: Text("Barrio acacias", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.orange)),
+                    subtitle: Text(context.watch<UserServices>().address.text, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.orange)),
                   ),
 
                   ListTile(
@@ -226,21 +229,23 @@ class CarritoComprasScreen extends StatelessWidget {
                       ),
                       child: Icon(Icons.monetization_on_rounded, color: Colors.orange)
                     ),
-                    trailing: IconButton(icon: Icon(Icons.edit), onPressed: (){},),
+                    trailing: IconButton(icon: Icon(Icons.edit), onPressed: (){
+                      context.read<PizzaServices>().showPaymentMethodModal(context);
+                    },),
                     title: Text("Metodo de Pago"),
-                    subtitle: Text("Efectivo", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.orange)),
+                    subtitle: Text(context.watch<PizzaServices>().metodoPago, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.orange)),
                   ),
 
                 ],
               ),
             ),
 
-            SizedBox(height: 18,),
+            SizedBox(height: 10,),
 
             ElevatedButton(
                 onPressed: () {
                   // Acción del botón
-                  context.read<PizzaServices>().createVenta(context);     
+                  context.read<PizzaServices>().createVenta(context, context.read<UserServices>().userInfo);     
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF4CAF50)),

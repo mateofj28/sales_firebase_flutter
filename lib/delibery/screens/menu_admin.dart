@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class MenuAdminScreen extends StatelessWidget {
   MenuAdminScreen({super.key});
 
 
   List<Map> menus = [
-    {
-      "title":"Información Personal",
-      "icon":Icons.person,
-    },
     {
       "title":"Crear Repartidor",
       "icon":Icons.person_add_rounded,
@@ -45,7 +41,7 @@ class MenuAdminScreen extends StatelessWidget {
             SizedBox(height: 20),
 
             Text(
-              "Hola Jaime", 
+              "Hola Mfj", 
               style: TextStyle(
                 fontWeight: FontWeight.bold, 
                 fontSize: 20

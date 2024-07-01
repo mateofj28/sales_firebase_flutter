@@ -9,6 +9,8 @@ import 'package:sales_firebase_flutter/delibery/screens/home_admin.dart';
 import 'package:sales_firebase_flutter/delibery/screens/home_client.dart';
 import 'package:sales_firebase_flutter/delibery/screens/menu_admin.dart';
 import 'package:sales_firebase_flutter/delibery/screens/menu_client.dart';
+import 'package:sales_firebase_flutter/delibery/screens/my_orders.dart';
+import 'package:sales_firebase_flutter/delibery/screens/segurity_page.dart';
 import 'package:sales_firebase_flutter/delibery/screens/update_client.dart';
 import 'package:sales_firebase_flutter/delibery/screens/venta_confirmada.dart';
 import 'package:sales_firebase_flutter/delibery/services/pizza_services.dart';
@@ -16,7 +18,7 @@ import 'package:sales_firebase_flutter/delibery/services/users_services.dart';
 import 'package:sales_firebase_flutter/firebase_options.dart';
 import 'package:sales_firebase_flutter/screens/create_user_screen.dart';
 import 'package:sales_firebase_flutter/screens/login_screen.dart';
-import 'package:sales_firebase_flutter/services/auth_services.dart';
+
 
 
 void main() async {
@@ -40,11 +42,14 @@ class MyApp extends StatelessWidget {
     '/homeClient': (_) => const HomeClientScreen(),
     '/carritoCompras': (_) => const CarritoComprasScreen(),
     '/menuClient': (_) => MenuClientScreen(),
-    '/createAddress': (_) => const AddAddressScreen(),
+    '/createAddress': (_) => AddAddressScreen(),
     '/confirmSale': (_) => const VentaConfirmadaScreen(),
     '/updateClient': (_) => const UpdateClientScreen(),
+    '/myOrders': (_) => const MyOrdersScreen(),
+    '/segurity': (_) => SegurityScreen(),
 
   };
+
 
   @override
   Widget build(BuildContext context) {
