@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget {
     '/updateClient': (_) => const UpdateClientScreen(),
     '/myOrders': (_) => const MyOrdersScreen(),
     '/segurity': (_) => SegurityScreen(),
-
   };
 
 

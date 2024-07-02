@@ -1,5 +1,5 @@
 name: sales_firebase_flutter
-description: "A new Flutter project."
+description: "City pizza"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -43,6 +43,7 @@ dependencies:
   provider:
   shared_preferences:
   json_annotation:
+  flutter_launcher_icons: ^0.13.1
 
 
 dev_dependencies:
@@ -58,7 +59,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/city.jpeg"
 # The following section is specific to Flutter packages.
 flutter:
 
